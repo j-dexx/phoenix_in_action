@@ -9,3 +9,13 @@
 </dl>
 
 <%= link("Edit", to: Routes.user_path(@conn, :edit, @user)) %>
+
+<h2>Recent bids</h2>
+
+<%= for bid <- @bids do %>
+  <p>
+    <strong><%= formatted_datetime(bid.inserted_at) %></strong> -- <%= integer_to_currency(bid.amount) %>
+    for
+    <em><%= link bid.item.title, to: Routes.item_path(@conn, :show, bid.item) %></em>
+  </p>
+<% end %>

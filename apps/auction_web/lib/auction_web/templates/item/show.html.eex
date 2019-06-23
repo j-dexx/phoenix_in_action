@@ -6,3 +6,16 @@
 </ul>
 
 <%= link("Edit", to: Routes.item_path(@conn, :edit, @item)) %>
+
+<div style="display: flex; flex-direction: row;">
+  <div style="flex: 1;">
+    <h2>Current bids</h2>
+    <%= for bid <- @item.bids do %>
+      <p><%= integer_to_currency(bid.amount) %> <em>from <%= bid.user.username %></em></p>
+    <% end %>
+  </div>
+
+  <div style="flex: 1;">
+    <%= render("bid_form.html", conn: @conn, item: @item, bid: @bid) %>
+  </div>
+</div>

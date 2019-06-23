@@ -3,12 +3,15 @@ defmodule AuctionWeb.ItemController do
 
   def index(conn, _params) do
     items = Auction.list_items()
+
     render(conn, "index.html", items: items)
   end
 
   def show(conn, %{"id" => id}) do
-    item = Auction.get_item(id)
-    render(conn, "show.html", item: item)
+    item = Auction.get_item_with_bids(id)
+    bid = Auction.new_bid()
+
+    render(conn, "show.html", item: item, bid: bid)
   end
 
   def new(conn, _params) do
@@ -25,6 +28,7 @@ defmodule AuctionWeb.ItemController do
 
   def edit(conn, %{"id" => id}) do
     item = Auction.edit_item(id)
+
     render(conn, "edit.html", item: item)
   end
 
