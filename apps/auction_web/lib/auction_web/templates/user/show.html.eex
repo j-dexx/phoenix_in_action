@@ -1,0 +1,11 @@
+<h1>User details</h1>
+
+<dl>
+  <dt>Username</dt>
+  <dd><%= @user.username %></dd>
+  <br />
+  <dt>Email address</dt>
+  <dd><%= @user.email_address %></dd>
+</dl>
+
+<%= link("Edit", to: Routes.user_path(@conn, :edit, @user)) %>
